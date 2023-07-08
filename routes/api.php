@@ -22,6 +22,7 @@ Route::apiResource('subjects', SubjectController::class)->only(
     [
         'index',
         'show',
-        'store'
+        'store',
+        'update'
     ]
 );

@@ -11,7 +11,8 @@ class Subject extends Model
 
     protected $fillable=[
         'title',
-        'description'
+        'description',
+        'is_approved'
     ];
     protected $casts=[
         'is_approved'=>'boolean',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSubjectRequest;
+use App\Http\Requests\UpdateSubjectRequest;
 use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
@@ -26,6 +27,12 @@ class SubjectController extends Controller
         $validated = $request->validated();
 
         $subject = Subject::create($validated);
+        return new SubjectResource($subject);
+    }
+    public function update(UpdateSubjectRequest $request, Subject $subject)
+    {
+        $validated = $request->validated();
+        $subject->update($validated);
         return new SubjectResource($subject);
     }
 
