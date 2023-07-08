@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             // php artisan make:model Subject -cm
+            // composer dump-autoload
             $table->id();
             $table->string('title');
             $table->string('description');
