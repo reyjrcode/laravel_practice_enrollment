@@ -35,5 +35,10 @@ class SubjectController extends Controller
         $subject->update($validated);
         return new SubjectResource($subject);
     }
+    public function destroy(Request $request, Subject $subject)
+    {
+        $subject->delete();
+        return response()->noContent();
+    }
 
 }
