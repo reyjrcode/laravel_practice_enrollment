@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('subjects', SubjectController::class)->only(
     [
         'index',
-        'show'
+        'show',
+        'store'
     ]
 );
