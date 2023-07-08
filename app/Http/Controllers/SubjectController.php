@@ -8,6 +8,7 @@ use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class SubjectController extends Controller
 {
@@ -16,7 +17,15 @@ class SubjectController extends Controller
     {
         // php artisan make:resource SubjectResource
         // php artisan make:resource SubjectCollection
-        return new SubjectCollection(Subject::paginate());
+        // {{DOMAIN}}/api/subjects?filter[is_approved]=0
+
+
+
+
+        $subjects = QueryBuilder::for(Subject::class)
+            ->allowedFilters('is_approved')
+            ->paginate();
+        return new SubjectCollection($subjects);
     }
     public function show(Request $request, Subject $subject)
     {
