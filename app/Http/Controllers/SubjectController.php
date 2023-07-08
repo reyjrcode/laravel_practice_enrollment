@@ -18,12 +18,14 @@ class SubjectController extends Controller
         // php artisan make:resource SubjectResource
         // php artisan make:resource SubjectCollection
         // {{DOMAIN}}/api/subjects?filter[is_approved]=0
-
+        // {{DOMAIN}}/api/subjects?sort=title,-is_approved
 
 
 
         $subjects = QueryBuilder::for(Subject::class)
             ->allowedFilters('is_approved')
+            ->defaultSort('-created_at')
+            ->allowedSorts(['title','description','is_approved','created_at'])
             ->paginate();
         return new SubjectCollection($subjects);
     }
