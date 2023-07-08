@@ -16,7 +16,7 @@ class SubjectController extends Controller
     {
         // php artisan make:resource SubjectResource
         // php artisan make:resource SubjectCollection
-        return new SubjectCollection(Subject::all());
+        return new SubjectCollection(Subject::paginate());
     }
     public function show(Request $request, Subject $subject)
     {
