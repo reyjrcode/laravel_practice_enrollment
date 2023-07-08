@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->boolean('is_approved')->default(false);
+            $table->foreignId('creator_id')->constrained('users');
             $table->timestamps();
         });
     }

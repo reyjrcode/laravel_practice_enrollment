@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class SubjectFactory extends Factory
             'title' => $this->faker->sentence(),
             'description' => $this->faker->sentence(),
             'is_approved' => false,
+            'creator_id'=>User::factory(),
         ];
     }
 }
