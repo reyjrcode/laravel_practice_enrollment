@@ -8,6 +8,7 @@ use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class SubjectController extends Controller
@@ -37,7 +38,7 @@ class SubjectController extends Controller
     {
         $validated = $request->validated();
 
-        $subject = Subject::create($validated);
+        $subject = Auth::user()->subjects()->create($validated);
         return new SubjectResource($subject);
     }
     public function update(UpdateSubjectRequest $request, Subject $subject)
