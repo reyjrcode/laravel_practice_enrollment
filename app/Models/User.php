@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subject::class, 'creator_id');
     }
+    public function professor(): HasMany
+    {
+        return $this->hasMany(Professor::class, 'creator_id');
+    }
 }

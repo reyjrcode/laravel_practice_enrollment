@@ -21,7 +21,7 @@ class SubjectFactory extends Factory
             //php artisan make:factory SubjectFactory --model+Subject
             // {{DOMAIN}}/api/subjects?page=2
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->sentence(),
+            // 'description' => $this->faker->sentence(),
             'is_approved' => false,
             'creator_id'=>User::factory(),
         ];

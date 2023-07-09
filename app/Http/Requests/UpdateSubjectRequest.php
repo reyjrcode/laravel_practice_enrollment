@@ -23,9 +23,8 @@ class UpdateSubjectRequest extends FormRequest
     {
         return [
             //
-            'tile'=>'sometimes|required|max:255',
-            'description'=>'sometimes|required|max:255',
-            'is_approved'=>'sometimes|boolean',
+            'title' => 'sometimes|required|max:255',
+            'is_approved' => 'sometimes|boolean',
 
         ];
     }

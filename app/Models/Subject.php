@@ -14,7 +14,6 @@ class Subject extends Model
 
     protected $fillable = [
         'title',
-        'description',
         'is_approved'
     ];
     protected $casts = [
@@ -25,11 +24,16 @@ class Subject extends Model
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+    public function professor(): BelongsTo
+    {
+        return $this->belongsTo(Professor::class);
+    }
     protected static function booted(): void
     {
         static::addGlobalScope('creator', function (Builder $builder) {
             $builder->where('creator_id', Auth::id());
         });
     }
+
 
 }

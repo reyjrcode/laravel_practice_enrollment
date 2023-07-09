@@ -24,8 +24,6 @@ class StoreSubjectRequest extends FormRequest
         return [
             // php artisan make:request StoreSubjectRequest
             'title' => ' required|unique:subjects,title|max:255',
-            'description' => ' required|unique:subjects,description|max:255',
-        
         ];
     }
 }

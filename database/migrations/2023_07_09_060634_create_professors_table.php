@@ -4,21 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            // php artisan make:model Subject -cm
-            // composer dump-autoload
+        Schema::create('professors', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-
-            $table->boolean('is_approved')->default(false);
+            $table->string('full_name');
             $table->foreignId('creator_id')->constrained('users');
             $table->timestamps();
+            // php artisan make:model Professor -cmf
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('professors');
     }
 };
