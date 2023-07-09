@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->string('title');
 
             $table->boolean('is_approved')->default(false);
-            $table->foreignId('creator_id')->constrained('users');
+            $table->foreignId('creator_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('professor_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

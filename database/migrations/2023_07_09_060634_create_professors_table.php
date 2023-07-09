@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->foreignId('creator_id')->constrained('users');
+            $table->foreignId('creator_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
             // php artisan make:model Professor -cmf
+            // php artisan migrate:fresh
         });
     }
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('subjects', function (Blueprint $table) {
             
-            $table->foreignId('professor_id')->nullable()->constrained();
+
         });
     }
 
