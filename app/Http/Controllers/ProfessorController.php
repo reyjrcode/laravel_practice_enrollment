@@ -31,7 +31,9 @@ class ProfessorController extends Controller
     public function show(Request $request, Professor $professor)
     {
         // {{DOMAIN}}/api/professors?include=subjects
-        return (new ProfessorResource($professor))->load('subjects');
+        return (new ProfessorResource($professor))
+        ->load('subjects')
+        ->load('members');
     }
 
     public function update(UpdateProfessorRequest $request, Professor $professor)
