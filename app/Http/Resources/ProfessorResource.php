@@ -14,6 +14,12 @@ class ProfessorResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'=> $this->id,
+            'full_name'=> $this->full_name,
+            'subjects'=>SubjectResource::collection($this->subjects),
+            'created_at'=> $this->created_at,
+            'updated_at'=> $this->updated_at,
+        ];
     }
 }

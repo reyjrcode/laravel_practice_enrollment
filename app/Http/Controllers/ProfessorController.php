@@ -18,6 +18,11 @@ class ProfessorController extends Controller
         $professor = Auth::user()->professor()->create($validated);
         return new ProfessorResource($professor);
     }
+    public function show(Request $request, Professor $professor)
+    {
+        return new ProfessorResource($professor);
+    }
+
     public function update(UpdateProfessorRequest $request, Professor $professor)
     {
         $validated = $request->validated();
