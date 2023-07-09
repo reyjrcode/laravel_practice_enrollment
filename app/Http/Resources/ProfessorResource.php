@@ -17,7 +17,7 @@ class ProfessorResource extends JsonResource
         return [
             'id'=> $this->id,
             'full_name'=> $this->full_name,
-            'subjects'=>SubjectResource::collection($this->subjects),
+            'subjects'=>SubjectResource::collection($this->whenLoaded('subjects')),
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
         ];
