@@ -23,7 +23,7 @@ class StoreProfessorRequest extends FormRequest
     {
         return [
             //
-            'full_name'=>'required|max:255'
+            'full_name'=>'unique:professors,full_name|required|max:255'
         ];
     }
 }

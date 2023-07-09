@@ -11,7 +11,8 @@ class Professor extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'full_name'
+        'full_name',
+
     ];
     public function subjects(): HasMany
     {

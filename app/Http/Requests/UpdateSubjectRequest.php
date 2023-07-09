@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateSubjectRequest extends FormRequest
 {
@@ -25,6 +27,12 @@ class UpdateSubjectRequest extends FormRequest
             //
             'title' => 'sometimes|required|max:255',
             'is_approved' => 'sometimes|boolean',
+            'professor_id' => [
+                'nullable',
+                Rule::exists('professors', 'id')->where(function ($query) {
+                    $query->where('creator_id', Auth::id());
+                }),
+            ]
 
         ];
     }
