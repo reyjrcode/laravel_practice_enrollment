@@ -17,8 +17,8 @@ class ProfessorController extends Controller
     public function index(Request $request)
     {
         $professors = QueryBuilder::for(Professor::class)
-        ->allowedIncludes('subjects')
-        ->paginate();
+            ->allowedIncludes('subjects')
+            ->paginate();
 
         return new ProfessorCollection($professors);
     }
@@ -39,5 +39,11 @@ class ProfessorController extends Controller
         $validated = $request->validated();
         $professor->update($validated);
         return new ProfessorResource($professor);
+    }
+    public function destroy(Request $request, Professor $professor)
+    {
+        $professor->delete();
+
+        return response()->noContent();
     }
 }
