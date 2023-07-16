@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MembersController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Http\Request;
@@ -24,11 +25,18 @@ Route::post('register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource(
         'subjects', SubjectController::class
     );
     Route::apiResource(
         'professors', ProfessorController::class
     );
+    Route::apiResource(
+        'professors.members', MembersController::class
+    )->only([
+                'index',
+                'store',
+                'destroy',
+            ]);
 });
