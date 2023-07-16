@@ -31,8 +31,14 @@ class Subject extends Model
     }
     protected static function booted(): void
     {
-        static::addGlobalScope('creator', function (Builder $builder) {
-            $builder->where('creator_id', Auth::id());
+        // $p = Professor::factory()->create()
+        // User::factory()->create() 
+        // $p->members()-> attach([4])
+        // User::find(3)
+
+        static::addGlobalScope('member', function (Builder $builder) {
+            $builder->where('creator_id', Auth::id())
+                ->orWhereIn('professor_id', Auth::user()->memberships->pluck('id'));
         });
     }
 

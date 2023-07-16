@@ -14,6 +14,12 @@ use Spatie\QueryBuilder\QueryBuilder;
 class SubjectController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->authorizeResource(Subject::class, 'subject');
+    }
+
+
     public function index(Request $request)
     {
         // php artisan make:resource SubjectResource
@@ -22,11 +28,10 @@ class SubjectController extends Controller
         // {{DOMAIN}}/api/subjects?sort=title,-is_approved
 
 
-
         $subjects = QueryBuilder::for(Subject::class)
             ->allowedFilters('is_approved')
             ->defaultSort('-created_at')
-            ->allowedSorts(['title','is_approved','created_at'])
+            ->allowedSorts(['title', 'is_approved', 'created_at'])
             ->paginate();
         return new SubjectCollection($subjects);
     }
@@ -40,7 +45,7 @@ class SubjectController extends Controller
 
         $subject = Auth::user()->subjects()->create($validated);
         return new SubjectResource($subject);
-    } 
+    }
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         $validated = $request->validated();
