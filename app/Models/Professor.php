@@ -27,16 +27,16 @@ class Professor extends Model
     }
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,Member::class);
+        return $this->belongsToMany(User::class, Member::class);
     }
-    // protected static function booted(): void
-    // {
-    //     static::addGlobalScope('creator', function (Builder $builder) {
-    //         $builder->where('creator_id', Auth::id());
-    //     });
-    //     // $p=Professor::factory()->create()
-    //     // $u=User::factory()->create()
-    //     // 
-    // }
-    
+    protected static function booted(): void
+    {
+        static::addGlobalScope('member', function (Builder $builder) {
+            $builder->whereRelation('members', 'user_id', Auth::id());
+        });
+        // $p=Professor::factory()->create()
+        // $u=User::factory()->create()
+        // 
+    }
+
 }

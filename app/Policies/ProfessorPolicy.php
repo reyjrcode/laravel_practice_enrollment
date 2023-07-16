@@ -11,25 +11,18 @@ class ProfessorPolicy
     /**
      * Determine whether the user can view any models.
      */
-    // public function viewAny(User $user): bool
-    // {
-    //     //
-    // }
+    public function viewAny(User $user): bool
+    {
+
+        return true;
+    }
 
     /**
      * Determine whether the user can view the model.
      */
     public function view(User $user, Professor $professor): bool
     {
-        if ($user->id === $professor->creator_id) {
-            return true;
-        }
-
-        if ($user->memberships->contains($professor)) {
-            return true;
-        }
-
-        return false;
+        return $user->memberships()->contains($professor);
     }
 
     /**
