@@ -31,6 +31,7 @@ class ProfessorPolicy
     public function create(User $user): bool
     {
         //
+        return true;
     }
 
     /**
@@ -39,6 +40,7 @@ class ProfessorPolicy
     public function update(User $user, Professor $professor): bool
     {
         //
+        return $user->id === $professor->creator_id;
     }
 
     /**
@@ -47,6 +49,8 @@ class ProfessorPolicy
     public function delete(User $user, Professor $professor): bool
     {
         //
+        return $user->id === $professor->creator_id;
+
     }
 
     /**
@@ -55,6 +59,7 @@ class ProfessorPolicy
     public function restore(User $user, Professor $professor): bool
     {
         //
+        return false;
     }
 
     /**
@@ -63,5 +68,7 @@ class ProfessorPolicy
     public function forceDelete(User $user, Professor $professor): bool
     {
         //php artisan make:policy ProfessorPolicy --model=Professor
+        return false;
+
     }
 }
