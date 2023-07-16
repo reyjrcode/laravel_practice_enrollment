@@ -16,17 +16,14 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-
         if (!Auth::attempt($validated)) {
             return response()->json([
                 'message' => 'Login information invalid',
             ], 401);
-
         }
-
         $user = User::where('email', $validated['email'])->first();
-
         return response()->json([
+            'message' => 'Login Success!',
             'access_token' => $user->createToken('api_token')->plainTextToken,
             'token_type' => 'Bearer',
         ]);
@@ -39,11 +36,8 @@ class AuthController extends Controller
             'email' => 'required|max:255|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
         ]);
-
         $validated['password'] = Hash::make($validated['password']);
-
         $user = User::create($validated);
-
         return response()->json([
             'data' => $user,
             'access_token' => $user->createToken('api_token')->plainTextToken,

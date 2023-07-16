@@ -13,6 +13,10 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class ProfessorController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Professor::class, 'professor');
+    }
     //
     public function index(Request $request)
     {
@@ -32,8 +36,8 @@ class ProfessorController extends Controller
     {
         // {{DOMAIN}}/api/professors?include=subjects
         return (new ProfessorResource($professor))
-        ->load('subjects')
-        ->load('members');
+            ->load('subjects')
+            ->load('members');
     }
 
     public function update(UpdateProfessorRequest $request, Professor $professor)
