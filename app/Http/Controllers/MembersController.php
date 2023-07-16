@@ -17,4 +17,16 @@ class MembersController extends Controller
         $members = $professor->members;
         return new UserCollection($members);
     }
+    public function store(Request $request, Professor $professor)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $professor->members()->syncWithoutDetaching([$request->user_id]);
+
+        $members = $professor->members;
+
+        return new UserCollection($members);
+    }
 }
