@@ -24,14 +24,14 @@ class UpdateSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            //$u = User::find(2)
+            // $auth()->loginUsingId(2)
+            // $u->memberships()->get()
             'title' => 'sometimes|required|max:255',
             'is_approved' => 'sometimes|boolean',
             'professor_id' => [
                 'nullable',
-                Rule::exists('professors', 'id')->where(function ($query) {
-                    $query->where('creator_id', Auth::id());
-                }),
+                Rule::in(Auth::user()->memberships->pluck('id')),
             ]
 
         ];
